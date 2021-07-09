@@ -3,6 +3,7 @@ package commessenger_app.clone_messenger.relationshipuser;
 import commessenger_app.clone_messenger.relationshipuser.model.RelationshipUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -31,5 +32,21 @@ public class RelationshipUserService {
 
     public List<RelationshipUser> getInviteRequest(String idRecivice, String status) {
         return relationshipUserRepository.getInviteRequest(idRecivice,status);
+    }
+
+    public int updateStatusRelationShip(int status,String id_send,String id_recivice) {
+         return relationshipUserRepository.updateStatusRelationShip(status,id_send,id_recivice);
+    }
+
+    public int deleteRelationShip(String id_send,String id_recivice) {
+        return relationshipUserRepository.deleteRelationShip(id_send,id_recivice);
+    }
+
+    public List<RelationshipUser> getFriendProposal(String idSend,int statusOne,int statusTwo,int statusThree) {
+        return relationshipUserRepository.getFriendProposal(idSend,statusOne,statusTwo,statusThree);
+    }
+
+    public List<RelationshipUser> getFriendById(String id) {
+        return relationshipUserRepository.getFriendById(id);
     }
 }

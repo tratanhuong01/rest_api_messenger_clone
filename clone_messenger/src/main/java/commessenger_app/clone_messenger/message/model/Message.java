@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.message.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import commessenger_app.clone_messenger.groupmessage.model.GroupMessage;
 import commessenger_app.clone_messenger.user.model.User;
 
@@ -18,7 +19,7 @@ public class Message {
     @JoinColumn(name="idGroupMessage")
     private GroupMessage groupMessage;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="idUser")
     private User userMesages;
 

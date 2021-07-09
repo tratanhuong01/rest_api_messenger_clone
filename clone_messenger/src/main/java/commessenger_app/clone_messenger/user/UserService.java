@@ -1,5 +1,7 @@
 package commessenger_app.clone_messenger.user;
 
+import commessenger_app.clone_messenger.DTO.RelationUser;
+import commessenger_app.clone_messenger.relationshipuser.model.RelationshipUser;
 import commessenger_app.clone_messenger.user.model.FormLogin;
 import commessenger_app.clone_messenger.user.model.FormRegister;
 import commessenger_app.clone_messenger.user.model.User;
@@ -38,7 +40,6 @@ public class UserService {
     }
 
     public List<User> getUser() {
-        List<User> userList = new ArrayList<>();
         return userRepository.findAll();
     }
 
@@ -86,5 +87,20 @@ public class UserService {
 
     public User searchUserByEmailOrPhone(String emailOrPhone) {
         return userRepository.searchUserByEmailOrPhone(emailOrPhone);
+    }
+    public List<User> processUserTint(RelationUser relationUser) {
+        List<User> newList = new ArrayList<>();
+        List<User> userNewList = relationUser.getUserList();
+        List<RelationshipUser> relationshipUserList = relationUser.getRelationshipUserList();
+        for (int i = 0; i < userNewList.size() ; i++) {
+            int check = 0;
+            for (int j = 0; j < relationshipUserList.size() ; j++) {
+                if (userNewList.get(i).getId().equals(relationshipUserList.get(j).getUserRelationshipUser().getId()))
+                    check++;
+            }
+            if (check == 0 && !userNewList.get(i).getId().equals(relationUser.getIdMain()))
+                newList.add(userNewList.get(i));
+        }
+        return newList;
     }
 }

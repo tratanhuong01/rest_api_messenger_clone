@@ -33,4 +33,28 @@ public class RelationshipUserController {
     public List<RelationshipUser> getInviteRequest(@PathVariable String idRecivice, @PathVariable String status) {
         return relationshipUserService.getInviteRequest(idRecivice,status);
     }
+
+    @CrossOrigin
+    @GetMapping("updateStatusRelationShip/{idSend}/{idRecivice}")
+    public int updateStatusRelationShip(@PathVariable String idSend,@PathVariable String idRecivice) {
+        return relationshipUserService.updateStatusRelationShip(3,idSend,idRecivice);
+    }
+
+    @CrossOrigin
+    @GetMapping("relationshipuser/{idSend}/{idRecivice}")
+    public int deleteRelationShip(@PathVariable String idSend,@PathVariable String idRecivice) {
+        return relationshipUserService.deleteRelationShip(idSend,idRecivice);
+    }
+
+    @CrossOrigin
+    @GetMapping("getFriendProposal/{idSend}")
+    public List<RelationshipUser> getFriendProposal(@PathVariable String idSend) {
+        return relationshipUserService.getFriendProposal(idSend,1,2,3);
+    }
+
+    @CrossOrigin
+    @GetMapping("relationshipuser/{id}")
+    public List<RelationshipUser> getFriendById(@PathVariable String id) {
+        return relationshipUserService.getFriendById(id);
+    }
 }

@@ -1,5 +1,7 @@
 package commessenger_app.clone_messenger.user;
 
+import commessenger_app.clone_messenger.DTO.RelationUser;
+import commessenger_app.clone_messenger.relationshipuser.model.RelationshipUser;
 import commessenger_app.clone_messenger.user.model.FormLogin;
 import commessenger_app.clone_messenger.user.model.FormRegister;
 import commessenger_app.clone_messenger.user.model.User;
@@ -12,6 +14,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
 
     @CrossOrigin
     @GetMapping("/users")
@@ -53,4 +57,9 @@ public class UserController {
         return userService.searchUserByEmailOrPhone(data);
     }
 
+    @CrossOrigin
+    @PostMapping("processUserTint")
+    public List<User> processUserTint(@RequestBody RelationUser relationUser) {
+        return userService.processUserTint(relationUser);
+    }
 }

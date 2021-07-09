@@ -9,7 +9,7 @@ public class StringUtil {
         String idNew = "";
         switch (table) {
             case "users" :
-                if (id == null || id == "") {
+                if (id == null) {
                     idNew = "1000000000";
                 }
                 else {
@@ -20,20 +20,21 @@ public class StringUtil {
                 return idNew;
             case "messages" :
                 if (id == null) {
-                    idNew = "MESS100000";
+                    idNew = "300000000";
                 }
                 else {
-                    int idNewInt = Integer.parseInt(id.replace("MESS",""));
+                    System.out.println(" Id recivice : " + id);
+                    int idNewInt = Integer.parseInt(id);
                     idNewInt++;
                     idNew = String.valueOf(idNewInt);
                 }
                 return idNew;
             case "groupmessage" :
                 if (id == null) {
-                    idNew = "GRME100000";
+                    idNew = "2000000000";
                 }
                 else {
-                    int idNewInt = Integer.parseInt(id.replace("GRME",""));
+                    int idNewInt = Integer.parseInt(id);
                     idNewInt++;
                     idNew = String.valueOf(idNewInt);
                 }

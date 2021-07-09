@@ -17,9 +17,6 @@ public class User {
     @Id
     private String id;
 
-    @OneToMany(mappedBy="userMesages")
-    private Set<Message> messages;
-
     @OneToMany(mappedBy="userRelationshipUser")
     private Set<RelationshipUser> relationshipUser;
 
@@ -56,13 +53,6 @@ public class User {
     @Column
     private Timestamp dateCreated;
 
-    public Set<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
-    }
 
     public int getDarkMode() {
         return darkMode;
