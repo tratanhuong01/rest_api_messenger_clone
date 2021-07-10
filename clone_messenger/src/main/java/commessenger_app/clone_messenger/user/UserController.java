@@ -62,4 +62,10 @@ public class UserController {
     public List<User> processUserTint(@RequestBody RelationUser relationUser) {
         return userService.processUserTint(relationUser);
     }
+
+    @CrossOrigin
+    @GetMapping("updateUser/darkMode/{type}/{id}")
+    public User updateDarkModeUser(@PathVariable int type,@PathVariable String id) {
+        return userService.updateDarkModeUser(type,id);
+    }
 }

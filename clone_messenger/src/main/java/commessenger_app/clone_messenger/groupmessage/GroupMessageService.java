@@ -23,7 +23,14 @@ public class GroupMessageService {
         GroupMessage groupMessage1 = groupMessageRepository.getIdBestNew();
         groupMessage.setId(StringUtil.gereralID("groupmessage",groupMessage1 == null ? null :groupMessage1.getId()));
         groupMessage.setDateCreated(new Timestamp(new Date().getTime()));
-        groupMessage.setTypeGroupMessage(0);
         return groupMessageRepository.save(groupMessage);
+    }
+
+    public int updateColorChatGroupMessage(String name,String id) {
+        return groupMessageRepository.updateColorChatGroupMessage(name,id);
+    }
+
+    public int updateNameGroupMessage(String id,String name) {
+        return groupMessageRepository.updateNameGroupMessage(name,id);
     }
 }

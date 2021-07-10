@@ -5,7 +5,6 @@ import commessenger_app.clone_messenger.message.model.Message;
 import commessenger_app.clone_messenger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -27,10 +26,22 @@ public class MessageService {
     }
 
     public Message addMessages(Message message) {
-        Message message1 = messageRepository.getIdBestNew();
-        message.setId(StringUtil.gereralID("messages",message1 == null ? null : message1.getId()));
+        if (message.getId() == null) {
+        }
+        else {
+            Message message1 = messageRepository.getIdBestNew();
+            message.setId(StringUtil.gereralID("messages",message1 == null ? null : message1.getId()));
+        }
         message.setDateCreated(new Timestamp(new Date().getTime()));
         return messageRepository.save(message);
+    }
+
+    public Message addMessagesGroup(List<Message> messageList) {
+        for (Message message : messageList) {
+            message.setDateCreated(new Timestamp(new Date().getTime()));
+            messageRepository.save(message);
+        }
+        return null;
     }
 
     public List<MessageGroupUser> getMessagesByGroupMessage(String id) {
@@ -58,4 +69,9 @@ public class MessageService {
         }
         return messageGroupUserList;
     }
+
+    public Message getIDBestNew() {
+        return messageRepository.getIdBestNew();
+    }
+
 }

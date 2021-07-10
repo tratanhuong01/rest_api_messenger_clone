@@ -103,4 +103,8 @@ public class UserService {
         }
         return newList;
     }
+
+    public User updateDarkModeUser(int type,String id) {
+        return userRepository.updateDarkModeUser(type,id);
+    }
 }

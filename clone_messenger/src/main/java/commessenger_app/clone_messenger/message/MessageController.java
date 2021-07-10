@@ -35,6 +35,12 @@ public class MessageController {
     }
 
     @CrossOrigin
+    @PostMapping("messagesGroup")
+    public Message addMessagesGroup(@RequestBody List<Message> messageList) {
+        return messageService.addMessagesGroup(messageList);
+    }
+
+    @CrossOrigin
     @GetMapping("messagesByGroupMessage/{id}")
     public List<MessageGroupUser> getMessagesByGroupMessage(@PathVariable String id) {
         return messageService.getMessagesByGroupMessage(id);
@@ -56,5 +62,11 @@ public class MessageController {
     @GetMapping("getListGroupMessageById/{id}")
     public List<List<MessageGroupUser>> getListGroupMessageById(@PathVariable String id) {
         return messageService.getListGroupMessage(id);
+    }
+
+    @CrossOrigin
+    @GetMapping("getIdNewMessage")
+    public Message getIdBestNew() {
+        return messageService.getIDBestNew();
     }
 }

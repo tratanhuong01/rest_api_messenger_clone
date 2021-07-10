@@ -20,4 +20,6 @@ public interface UserRepository extends JpaRepository<User,String> {
     @Query(value = "SELECT * from users WHERE email = ?1 OR phone = ?1 ",nativeQuery = true)
     User searchUserByEmailOrPhone(String emailOrPhone);
 
+    @Query(value = "UPDATE users SET dark_mode = ?1 WHERE id = ?2 ",nativeQuery = true)
+    User updateDarkModeUser(int type,String id);
 }
