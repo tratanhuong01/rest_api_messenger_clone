@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class GroupMessageController {
@@ -24,15 +25,21 @@ public class GroupMessageController {
         return groupMessageService.addGroupMessage(groupMessage);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("updateGroupMessage/colorChat/{id}/{name}")
     public int updateColorChatGroupMessage(@PathVariable String id,@PathVariable String name) {
         return groupMessageService.updateColorChatGroupMessage(name,id);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("updateGroupMessage/nameGroupMessage/{id}/{name}")
     public int updateNameGroupMessage(@PathVariable String id,@PathVariable String name) {
         return groupMessageService.updateNameGroupMessage(name,id);
+    }
+
+    @CrossOrigin
+    @GetMapping("groupmessage/{id}")
+    public Optional<GroupMessage> getGroupMessageById(@PathVariable String id) {
+        return groupMessageService.getGroupMessageById(id);
     }
 }

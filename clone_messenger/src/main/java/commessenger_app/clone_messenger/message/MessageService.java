@@ -26,12 +26,8 @@ public class MessageService {
     }
 
     public Message addMessages(Message message) {
-        if (message.getId() == null) {
-        }
-        else {
-            Message message1 = messageRepository.getIdBestNew();
-            message.setId(StringUtil.gereralID("messages",message1 == null ? null : message1.getId()));
-        }
+        Message message1 = messageRepository.getIdBestNew();
+        message.setId(StringUtil.gereralID("messages",message1 == null ? null : message1.getId()));
         message.setDateCreated(new Timestamp(new Date().getTime()));
         return messageRepository.save(message);
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GroupMessageService {
@@ -27,10 +28,14 @@ public class GroupMessageService {
     }
 
     public int updateColorChatGroupMessage(String name,String id) {
-        return groupMessageRepository.updateColorChatGroupMessage(name,id);
+        return groupMessageRepository.updateColorChatGroupMessage("#" +name,id);
     }
 
     public int updateNameGroupMessage(String id,String name) {
         return groupMessageRepository.updateNameGroupMessage(name,id);
+    }
+
+    public Optional<GroupMessage> getGroupMessageById(String id) {
+        return groupMessageRepository.findById(id);
     }
 }
