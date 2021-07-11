@@ -34,7 +34,7 @@ public class GroupMessageController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("updateGroupMessage/nameGroupMessage/{id}/{name}")
     public int updateNameGroupMessage(@PathVariable String id,@PathVariable String name) {
-        return groupMessageService.updateNameGroupMessage(name,id);
+        return groupMessageService.updateNameGroupMessage(id,name);
     }
 
     @CrossOrigin

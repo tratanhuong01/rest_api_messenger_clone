@@ -3,8 +3,11 @@ package commessenger_app.clone_messenger.message;
 import commessenger_app.clone_messenger.DTO.MessageGroupUser;
 import commessenger_app.clone_messenger.message.model.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -35,4 +38,10 @@ public interface MessageRepository extends JpaRepository<Message,String>{
     " groupmessage gm on m.id_group_message = gm.id inner join users as u on u.id = m.id_user WHERE " +
     " m.id_group_message = ?1 GROUP BY id_user ORDER BY m.date_created DESC ",nativeQuery = true)
     List<MessageGroupUser>  getListGroupMessages(String id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE messages SET nick_name = ?1 WHERE id_group_message = ?2 AND id_user = ?3 AND type_message = -1 ",nativeQuery = true)
+    int updateNickNameByUser(String nickName,String idGroupMessage,String idUser);
+
 }

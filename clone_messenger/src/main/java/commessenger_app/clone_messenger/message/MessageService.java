@@ -70,4 +70,8 @@ public class MessageService {
         return messageRepository.getIdBestNew();
     }
 
+    public int updateNickNameByUser(String nickName,String idGroupMessage,String idUser) {
+        return messageRepository.updateNickNameByUser(nickName,idGroupMessage,idUser);
+    }
+
 }

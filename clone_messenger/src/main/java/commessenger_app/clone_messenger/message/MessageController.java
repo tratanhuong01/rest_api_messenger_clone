@@ -1,6 +1,7 @@
 package commessenger_app.clone_messenger.message;
 
 import commessenger_app.clone_messenger.DTO.MessageGroupUser;
+import commessenger_app.clone_messenger.DTO.Nickname;
 import commessenger_app.clone_messenger.groupmessage.model.GroupMessage;
 import commessenger_app.clone_messenger.message.model.Message;
 import commessenger_app.clone_messenger.utils.StringUtil;
@@ -68,5 +69,12 @@ public class MessageController {
     @GetMapping("getIdNewMessage")
     public Message getIdBestNew() {
         return messageService.getIDBestNew();
+    }
+
+    @CrossOrigin
+    @PutMapping("updateMessage/nickName")
+    public int updateNickNameByUser(@RequestBody Nickname nickname) {
+        return messageService.updateNickNameByUser(nickname.getNameNickName(),
+                nickname.getIdGroupMessage(),nickname.getIdUser());
     }
 }
