@@ -8,14 +8,14 @@ import java.sql.Timestamp;
 
 public class BaseEntity {
 
-    @Column
-    private Timestamp dateCreated;
+  @Column
+  private Timestamp dateCreated;
 
-    public Timestamp getDateCreated() {
-        return dateCreated;
-    }
+  public Timestamp getDateCreated() {
+    return dateCreated;
+  }
 
-    public void setDateCreated(Timestamp dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+  public void setDateCreated(Timestamp dateCreated) {
+    this.dateCreated = dateCreated;
+  }
 }

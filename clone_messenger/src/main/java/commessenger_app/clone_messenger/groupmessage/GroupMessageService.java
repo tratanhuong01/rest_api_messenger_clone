@@ -13,29 +13,30 @@ import java.util.Optional;
 @Service
 public class GroupMessageService {
 
-    @Autowired
-    private GroupMessageRepository groupMessageRepository;
+  @Autowired
+  private GroupMessageRepository groupMessageRepository;
 
-    public List<GroupMessage> getGroupMessages() {
-        return groupMessageRepository.findAll();
-    }
+  public List<GroupMessage> getGroupMessages() {
+    return groupMessageRepository.findAll();
+  }
 
-    public GroupMessage addGroupMessage(GroupMessage groupMessage) {
-        GroupMessage groupMessage1 = groupMessageRepository.getIdBestNew();
-        groupMessage.setId(StringUtil.gereralID("groupmessage",groupMessage1 == null ? null :groupMessage1.getId()));
-        groupMessage.setDateCreated(new Timestamp(new Date().getTime()));
-        return groupMessageRepository.save(groupMessage);
-    }
+  public GroupMessage addGroupMessage(GroupMessage groupMessage) {
+    GroupMessage groupMessage1 = groupMessageRepository.getIdBestNew();
+    groupMessage.setId(StringUtil.gereralID("groupmessage", groupMessage1 == null ? null : groupMessage1.getId()));
+    groupMessage.setDateCreated(new Timestamp(new Date().getTime()));
+    return groupMessageRepository.save(groupMessage);
+  }
 
-    public int updateColorChatGroupMessage(String name,String id) {
-        return groupMessageRepository.updateColorChatGroupMessage("#" +name,id);
-    }
+  public int updateColorChatGroupMessage(String name, String id) {
+    return groupMessageRepository.updateColorChatGroupMessage("#" + name, id);
+  }
 
-    public int updateNameGroupMessage(String id,String name) {
-        return groupMessageRepository.updateNameGroupMessage(name,id);
-    }
+  public int updateNameGroupMessage(String id, String name) {
+    return groupMessageRepository.updateNameGroupMessage(name, id);
+  }
 
-    public Optional<GroupMessage> getGroupMessageById(String id) {
-        return groupMessageRepository.findById(id);
-    }
+  public Optional<GroupMessage> getGroupMessageById(String id) {
+    return groupMessageRepository.findById(id);
+  }
+
 }

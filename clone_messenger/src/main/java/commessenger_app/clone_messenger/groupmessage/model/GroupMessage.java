@@ -10,72 +10,72 @@ import java.util.Set;
 @Table(name = "groupmessage")
 public class GroupMessage {
 
-    @Id
-    private String id;
+  @Id
+  private String id;
 
-    @OneToMany(mappedBy="groupMessage")
-    private Set<Message> messages;
+  @OneToMany(mappedBy = "groupMessage")
+  private Set<Message> messages;
 
-    @Column(length = 100)
-    private String nameGroupMessage;
+  @Column(length = 100)
+  private String nameGroupMessage;
 
-    @Column(length = 7)
-    private String colorChat;
+  @Column(length = 7)
+  private String colorChat;
 
-    @Column
-    private String iconChat;
+  @Column
+  private String iconChat;
 
-    @Column
-    private int typeGroupMessage;
+  @Column
+  private int typeGroupMessage;
 
-    @Column
-    private Timestamp dateCreated;
+  @Column
+  private Timestamp dateCreated;
 
-    public String getId() {
-        return id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public String getNameGroupMessage() {
-        return nameGroupMessage;
-    }
+  public String getNameGroupMessage() {
+    return nameGroupMessage;
+  }
 
-    public void setNameGroupMessage(String nameGroupMessage) {
-        this.nameGroupMessage = nameGroupMessage;
-    }
+  public void setNameGroupMessage(String nameGroupMessage) {
+    this.nameGroupMessage = nameGroupMessage;
+  }
 
-    public String getColorChat() {
-        return colorChat;
-    }
+  public String getColorChat() {
+    return colorChat;
+  }
 
-    public void setColorChat(String colorChat) {
-        this.colorChat = colorChat;
-    }
+  public void setColorChat(String colorChat) {
+    this.colorChat = colorChat;
+  }
 
-    public String getIconChat() {
-        return iconChat;
-    }
+  public String getIconChat() {
+    return iconChat;
+  }
 
-    public void setIconChat(String iconChat) {
-        this.iconChat = iconChat;
-    }
+  public void setIconChat(String iconChat) {
+    this.iconChat = iconChat;
+  }
 
-    public int getTypeGroupMessage() {
-        return typeGroupMessage;
-    }
+  public int getTypeGroupMessage() {
+    return typeGroupMessage;
+  }
 
-    public void setTypeGroupMessage(int typeGroupMessage) {
-        this.typeGroupMessage = typeGroupMessage;
-    }
+  public void setTypeGroupMessage(int typeGroupMessage) {
+    this.typeGroupMessage = typeGroupMessage;
+  }
 
-    public Timestamp getDateCreated() {
-        return dateCreated;
-    }
+  public Timestamp getDateCreated() {
+    return dateCreated;
+  }
 
-    public void setDateCreated(Timestamp dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+  public void setDateCreated(Timestamp dateCreated) {
+    this.dateCreated = dateCreated;
+  }
 }
