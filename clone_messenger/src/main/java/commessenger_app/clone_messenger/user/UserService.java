@@ -101,7 +101,7 @@ public class UserService {
     return newList;
   }
 
-  public User updateDarkModeUser(int type, String id) {
+  public int updateDarkModeUser(int type, String id) {
     return userRepository.updateDarkModeUser(type, id);
   }
 }

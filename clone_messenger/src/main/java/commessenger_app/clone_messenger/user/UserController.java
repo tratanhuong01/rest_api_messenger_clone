@@ -65,7 +65,7 @@ public class UserController {
 
   @CrossOrigin
   @GetMapping("updateUser/darkMode/{type}/{id}")
-  public User updateDarkModeUser(@PathVariable int type, @PathVariable String id) {
+  public int updateDarkModeUser(@PathVariable int type, @PathVariable String id) {
     return userService.updateDarkModeUser(type, id);
   }
 }

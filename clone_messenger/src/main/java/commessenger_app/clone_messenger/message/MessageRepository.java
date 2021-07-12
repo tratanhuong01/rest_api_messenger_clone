@@ -23,7 +23,10 @@ public interface MessageRepository extends JpaRepository<Message, String> {
       " inner join users as u on u.id = m.id_user WHERE m.id_group_message = ?1  ORDER BY m.date_created ASC", nativeQuery = true)
   List<MessageGroupUser> getMessagesByGroupMessage(String id);
 
-  @Query(value = "SELECT DISTINCT id_group_message FROM messages WHERE id_user = ?1 AND type_message = -1 ORDER BY date_created DESC ", nativeQuery = true)
+  @Query(value = "SELECT * FROM messages WHERE id_user = ?1 ORDER BY date_created DESC ", nativeQuery = true)
+  List<Message> getAll(String id);
+
+  @Query(value = "SELECT DISTINCT id_group_message FROM messages WHERE id_user = ?1 ORDER BY date_created DESC ", nativeQuery = true)
   List<String> getDistinctGroupMessageById(String id);
 
   @Query(value = "SELECT DISTINCT id_group_message FROM messages INNER JOIN groupmessage ON " +
@@ -50,6 +53,8 @@ public interface MessageRepository extends JpaRepository<Message, String> {
   @Query(value = "SELECT DISTINCT id_group_message FROM messages WHERE id_group_message = ?1 AND type_message = -1 ",nativeQuery = true)
   Message getDistinctGroupMessageId(String idGroupMessage);
 
+  @Modifying
+  @Transactional
   @Query(value = "DELETE FROM messages WHERE id_group_message = ?1 AND id_user = ?2 AND type_message = -1 ",nativeQuery = true)
   int deleteMemberOutGroup(String idGroupMessage,String idUser);
 
