@@ -39,4 +39,8 @@ public class GroupMessageService {
     return groupMessageRepository.findById(id);
   }
 
+  public int updateIconChatMessage(String icon,String id) {
+    return groupMessageRepository.updateIconChatMessage(icon,id);
+  }
+
 }

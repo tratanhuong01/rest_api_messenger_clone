@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.groupmessage;
 
+import commessenger_app.clone_messenger.DTO.IconChat;
 import commessenger_app.clone_messenger.groupmessage.model.GroupMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,5 +42,11 @@ public class GroupMessageController {
   @GetMapping("groupmessage/{id}")
   public Optional<GroupMessage> getGroupMessageById(@PathVariable String id) {
     return groupMessageService.getGroupMessageById(id);
+  }
+
+  @CrossOrigin
+  @PutMapping("updateGroupMessage/iconChat")
+  public int updateIconChatMessage(@RequestBody  IconChat iconChat) {
+    return groupMessageService.updateIconChatMessage(iconChat.getIcon(),iconChat.getId());
   }
 }

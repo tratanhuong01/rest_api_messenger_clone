@@ -26,7 +26,8 @@ public interface MessageRepository extends JpaRepository<Message, String> {
   @Query(value = "SELECT * FROM messages WHERE id_user = ?1 ORDER BY date_created DESC ", nativeQuery = true)
   List<Message> getAll(String id);
 
-  @Query(value = "SELECT DISTINCT id_group_message FROM messages WHERE id_user = ?1 ORDER BY date_created DESC ", nativeQuery = true)
+  @Query(value = "SELECT DISTINCT id_group_message FROM messages WHERE id_user = ?1 " +
+      "GROUP BY id_group_message ORDER BY MAX(date_created) DESC, id_group_message", nativeQuery = true)
   List<String> getDistinctGroupMessageById(String id);
 
   @Query(value = "SELECT DISTINCT id_group_message FROM messages INNER JOIN groupmessage ON " +
