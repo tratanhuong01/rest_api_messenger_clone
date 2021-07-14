@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -21,6 +22,12 @@ public class UserController {
   @GetMapping("/users")
   public List<User> getUser() {
     return userService.getUser();
+  }
+
+  @CrossOrigin
+  @GetMapping("/users/{id}")
+  public Optional<User> getUserById(@PathVariable String id) {
+    return userService.getUserById(id);
   }
 
   @CrossOrigin

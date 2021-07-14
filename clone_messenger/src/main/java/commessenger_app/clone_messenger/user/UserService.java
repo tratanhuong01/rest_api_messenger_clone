@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -39,6 +40,10 @@ public class UserService {
 
   public List<User> getUser() {
     return userRepository.findAll();
+  }
+
+  public Optional<User> getUserById(String id) {
+    return userRepository.findById(id);
   }
 
   public Boolean addUser(User user) {
