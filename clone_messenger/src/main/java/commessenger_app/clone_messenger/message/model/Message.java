@@ -29,7 +29,7 @@ public class Message {
   private String nickName;
 
   @Column
-  private int stateMessage;
+  private String stateMessage;
 
   @Column
   private int typeMessage;
@@ -77,11 +77,11 @@ public class Message {
     this.nickName = nickName;
   }
 
-  public int getStateMessage() {
+  public String getStateMessage() {
     return stateMessage;
   }
 
-  public void setStateMessage(int stateMessage) {
+  public void setStateMessage(String stateMessage) {
     this.stateMessage = stateMessage;
   }
 

@@ -103,6 +103,11 @@ public class UserService {
       if (check == 0 && !userNewList.get(i).getId().equals(relationUser.getIdMain()))
         newList.add(userNewList.get(i));
     }
+    for (int i = 0; i < newList.size() ; i++) {
+      if (newList.get(i).getId().equals(relationUser.getIdMain())) {
+        newList.remove(i);
+      }
+    }
     return newList;
   }
 

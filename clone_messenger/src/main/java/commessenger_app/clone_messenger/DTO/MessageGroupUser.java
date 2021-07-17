@@ -1,9 +1,12 @@
 package commessenger_app.clone_messenger.DTO;
 
+import commessenger_app.clone_messenger.feel.model.Feel;
+
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.SqlResultSetMapping;
+import java.util.List;
 
 
 @SqlResultSetMapping(name = "customDataMapping",
@@ -66,4 +69,5 @@ public interface MessageGroupUser {
   String getTypeMessage();
 
   String getTypeGroupMessage();
+
 }

@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.message;
 
+import commessenger_app.clone_messenger.DTO.MessageDetail;
 import commessenger_app.clone_messenger.DTO.MessageGroupUser;
 import commessenger_app.clone_messenger.DTO.Nickname;
 import commessenger_app.clone_messenger.message.model.Message;
@@ -41,7 +42,7 @@ public class MessageController {
 
   @CrossOrigin
   @GetMapping("messagesByGroupMessage/{id}")
-  public List<MessageGroupUser> getMessagesByGroupMessage(@PathVariable String id) {
+  public List<MessageDetail> getMessagesByGroupMessage(@PathVariable String id) {
     return messageService.getMessagesByGroupMessage(id);
   }
 
@@ -53,13 +54,13 @@ public class MessageController {
 
   @CrossOrigin
   @GetMapping("createAllMessagesUser/{id}")
-  public List<List<MessageGroupUser>> createAllMessagesUser(@PathVariable String id) {
+  public List<List<MessageDetail>> createAllMessagesUser(@PathVariable String id) {
     return messageService.createAllMessagesUser(id);
   }
 
   @CrossOrigin
   @GetMapping("getListGroupMessageById/{id}")
-  public List<List<MessageGroupUser>> getListGroupMessageById(@PathVariable String id) {
+  public List<List<MessageDetail>> getListGroupMessageById(@PathVariable String id) {
     return messageService.getListGroupMessage(id);
   }
 

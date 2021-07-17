@@ -1,6 +1,9 @@
 package commessenger_app.clone_messenger.message;
 
+import commessenger_app.clone_messenger.DTO.MessageDetail;
 import commessenger_app.clone_messenger.DTO.MessageGroupUser;
+import commessenger_app.clone_messenger.feel.FeelRepository;
+import commessenger_app.clone_messenger.feel.model.Feel;
 import commessenger_app.clone_messenger.message.model.Message;
 import commessenger_app.clone_messenger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,9 @@ import java.util.Optional;
 public class MessageService {
   @Autowired
   MessageRepository messageRepository;
+
+  @Autowired
+  FeelRepository feelRepository;
 
   public List<Message> getAllMessages() {
     return messageRepository.findAll();
@@ -40,34 +46,76 @@ public class MessageService {
     return null;
   }
 
-  public List<MessageGroupUser> getMessagesByGroupMessage(String id) {
-    return messageRepository.getMessagesByGroupMessage(id);
+  public List<MessageDetail> getMessagesByGroupMessage(String id) {
+    List<MessageDetail> messageDetailList = new ArrayList<>();
+    List<MessageGroupUser> getList =  messageRepository.getMessagesByGroupMessage(id);
+    for (MessageGroupUser messageGroupUser: getList) {
+      List<Feel> feelList = feelRepository.getAllFeels(messageGroupUser.getIdMessage());
+      MessageDetail messageDetail = new MessageDetail(messageGroupUser.getIdUser(),messageGroupUser.getFirstName(),
+          messageGroupUser.getLastName(),messageGroupUser.getIdGroupMessage(),messageGroupUser.getIdMessage(),
+          messageGroupUser.getDateCreated(),messageGroupUser.getIconChat(),messageGroupUser.getNameGroupMessage(),
+          messageGroupUser.getColorChat(),messageGroupUser.getAvatar(),messageGroupUser.getStateMessage(),
+          messageGroupUser.getContent(),messageGroupUser.getNickName(),messageGroupUser.getTypeMessage(),
+          messageGroupUser.getTypeGroupMessage(),feelList);
+      messageDetailList.add(messageDetail);
+    }
+    return  messageDetailList;
   }
 
   public List<String> getDistinctGroupMessageById(String id) {
     return messageRepository.getDistinctGroupMessageById(id);
   }
 
-  public List<List<MessageGroupUser>> createAllMessagesUser(String id) {
-    List<List<MessageGroupUser>> newListMessageGroupUsers = new ArrayList<>();
+  public List<List<MessageDetail>> createAllMessagesUser(String id) {
+    List<List<MessageDetail>> newListMessageGroupUsers = new ArrayList<>();
     List<String> listIdGroupMessage = messageRepository.getDistinctGroupMessageById(id);
     for (String item : listIdGroupMessage) {
-      newListMessageGroupUsers.add(messageRepository.getMessagesByGroupMessage(item));
+      List<MessageGroupUser> messageGroupUserList = messageRepository.getMessagesByGroupMessage(item);
+      List<MessageDetail> messageDetailLists = new ArrayList<>();
+      for (MessageGroupUser messageGroupUser: messageGroupUserList) {
+        List<Feel> feelList = feelRepository.getAllFeels(messageGroupUser.getIdMessage());
+        MessageDetail messageDetail = new MessageDetail(messageGroupUser.getIdUser(),messageGroupUser.getFirstName(),
+            messageGroupUser.getLastName(),messageGroupUser.getIdGroupMessage(),messageGroupUser.getIdMessage(),
+            messageGroupUser.getDateCreated(),messageGroupUser.getIconChat(),messageGroupUser.getNameGroupMessage(),
+            messageGroupUser.getColorChat(),messageGroupUser.getAvatar(),messageGroupUser.getStateMessage(),
+            messageGroupUser.getContent(),messageGroupUser.getNickName(),messageGroupUser.getTypeMessage(),
+            messageGroupUser.getTypeGroupMessage(),feelList);
+        messageDetailLists.add(messageDetail);
+      }
+      newListMessageGroupUsers.add(messageDetailLists);
     }
     return newListMessageGroupUsers;
   }
 
-  public List<List<MessageGroupUser>> getListGroupMessage(String id) {
-    List<List<MessageGroupUser>> messageGroupUserList = new ArrayList<>();
+  public List<List<MessageDetail>> getListGroupMessage(String id) {
+    List<List<MessageDetail>> messageGroupUserList = new ArrayList<>();
     List<String> listIdGroupMessage = messageRepository.getDistinctGroupMessageMain(id);
     for (String item : listIdGroupMessage) {
-      messageGroupUserList.add(messageRepository.getListGroupMessages(item));
+      List<MessageGroupUser> messageGroupUserLists = messageRepository.getListGroupMessages(item);
+      List<MessageDetail> messageDetailLists = new ArrayList<>();
+      for (MessageGroupUser messageGroupUser: messageGroupUserLists) {
+        List<Feel> feelList = feelRepository.getAllFeels(messageGroupUser.getIdMessage());
+        MessageDetail messageDetail = new MessageDetail(messageGroupUser.getIdUser(),messageGroupUser.getFirstName(),
+            messageGroupUser.getLastName(),messageGroupUser.getIdGroupMessage(),messageGroupUser.getIdMessage(),
+            messageGroupUser.getDateCreated(),messageGroupUser.getIconChat(),messageGroupUser.getNameGroupMessage(),
+            messageGroupUser.getColorChat(),messageGroupUser.getAvatar(),messageGroupUser.getStateMessage(),
+            messageGroupUser.getContent(),messageGroupUser.getNickName(),messageGroupUser.getTypeMessage(),
+            messageGroupUser.getTypeGroupMessage(),feelList);
+        messageDetailLists.add(messageDetail);
+      }
+      messageGroupUserList.add(messageDetailLists);
     }
     return messageGroupUserList;
   }
 
   public Message getIDBestNew() {
-    return messageRepository.getIdBestNew();
+    Message message = messageRepository.getIdBestNew();
+    if (message == null) {
+      Message messageFirst = new Message();
+      messageFirst.setId("300000000");
+      return messageFirst;
+    }
+    return message;
   }
 
   public int updateNickNameByUser(String nickName, String idGroupMessage, String idUser) {

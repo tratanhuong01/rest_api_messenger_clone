@@ -52,6 +52,16 @@ public class User {
   @Column
   private Timestamp dateCreated;
 
+  @Column
+  private Timestamp timeActivity;
+
+  public Timestamp getTimeActivity() {
+    return timeActivity;
+  }
+
+  public void setTimeActivity(Timestamp timeActivity) {
+    this.timeActivity = timeActivity;
+  }
 
   public int getDarkMode() {
     return darkMode;
