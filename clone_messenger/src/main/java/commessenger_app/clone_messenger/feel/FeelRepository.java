@@ -12,13 +12,13 @@ import java.util.List;
 @Repository
 public interface FeelRepository extends JpaRepository<Feel,Long> {
   @Query(value = "SELECT * FROM feel WHERE id_message = ?1 ",nativeQuery = true)
-  public List<Feel> getAllFeels(String id);
+  List<Feel> getAllFeels(String id);
 
   @Modifying
   @Transactional
   @Query(value = "DELETE FROM feel WHERE id_message = ?1 AND id_user = ?2 ",nativeQuery = true)
-  public int deleteFeel(String idMessage,String idUser);
+  int deleteFeel(String idMessage,String idUser);
 
   @Query(value = "SELECT * FROM feel WHERE id_message = ?1 AND id_user = ?2 ",nativeQuery = true)
-  public Feel checkIsFeel(String idMessage,String idUser);
+  Feel checkIsFeel(String idMessage,String idUser);
 }
