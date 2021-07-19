@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.user;
 
+import commessenger_app.clone_messenger.DTO.Avatar;
 import commessenger_app.clone_messenger.DTO.RelationUser;
 import commessenger_app.clone_messenger.relationshipuser.model.RelationshipUser;
 import commessenger_app.clone_messenger.user.model.FormLogin;
@@ -114,4 +115,9 @@ public class UserService {
   public int updateDarkModeUser(int type, String id) {
     return userRepository.updateDarkModeUser(type, id);
   }
+
+  public int updateAvatar(String avatar,String id) {
+    return userRepository.updateAvatar(avatar, id);
+  }
+
 }

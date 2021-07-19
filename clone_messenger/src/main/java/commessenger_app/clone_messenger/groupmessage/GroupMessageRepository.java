@@ -28,4 +28,9 @@ public interface GroupMessageRepository extends JpaRepository<GroupMessage, Stri
   @Query(value = "UPDATE groupmessage SET icon_chat = ?1 WHERE id = ?2 ",nativeQuery = true)
   int updateIconChatMessage(String iconChat,String id);
 
+  @Modifying
+  @Transactional
+  @Query(value = "UPDATE groupmessage SET type_group_message = ?1 WHERE id = ?2 ",nativeQuery = true)
+  int updateTypeGroupMessage(int typeGroupMessage,String idGroupMessage);
+
 }

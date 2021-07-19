@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.user;
 
+import commessenger_app.clone_messenger.DTO.Avatar;
 import commessenger_app.clone_messenger.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,4 +28,9 @@ public interface UserRepository extends JpaRepository<User, String> {
   @Transactional
   @Query(value = "UPDATE users SET dark_mode = ?1 WHERE id = ?2 ", nativeQuery = true)
   int updateDarkModeUser(int type, String id);
+
+  @Modifying
+  @Transactional
+  @Query(value = "UPDATE users SET avatar = ?1 WHERE id = ?2 ",nativeQuery = true)
+  int updateAvatar(String avatar,String id);
 }

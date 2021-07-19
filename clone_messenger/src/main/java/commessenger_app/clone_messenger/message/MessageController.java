@@ -7,6 +7,7 @@ import commessenger_app.clone_messenger.message.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,14 +49,20 @@ public class MessageController {
 
   @CrossOrigin
   @GetMapping("getDistinctGroupMessageById/{id}")
-  public List<String> getDistinctGroupMessageById(@PathVariable String id) {
+  public List<String> getDistinctGroupMessageById(@PathVariable String id) throws ParseException {
     return messageService.getDistinctGroupMessageById(id);
   }
 
   @CrossOrigin
   @GetMapping("createAllMessagesUser/{id}")
-  public List<List<MessageDetail>> createAllMessagesUser(@PathVariable String id) {
+  public List<List<MessageDetail>> createAllMessagesUser(@PathVariable String id) throws ParseException {
     return messageService.createAllMessagesUser(id);
+  }
+
+  @CrossOrigin
+  @GetMapping("createAllMessagesUserWait/{id}")
+  public List<List<MessageDetail>> createAllMessagesUserWait(@PathVariable String id) throws ParseException {
+    return messageService.createAllMessagesUserWait(id);
   }
 
   @CrossOrigin

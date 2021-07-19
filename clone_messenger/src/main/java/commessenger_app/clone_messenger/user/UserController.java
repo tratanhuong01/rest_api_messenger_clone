@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.user;
 
+import commessenger_app.clone_messenger.DTO.Avatar;
 import commessenger_app.clone_messenger.DTO.RelationUser;
 import commessenger_app.clone_messenger.user.model.FormLogin;
 import commessenger_app.clone_messenger.user.model.FormRegister;
@@ -74,5 +75,11 @@ public class UserController {
   @GetMapping("updateUser/darkMode/{type}/{id}")
   public int updateDarkModeUser(@PathVariable int type, @PathVariable String id) {
     return userService.updateDarkModeUser(type, id);
+  }
+
+  @CrossOrigin
+  @PutMapping("updateAvatar")
+  public int updateAvatar(@RequestBody Avatar avatar) {
+    return userService.updateAvatar(avatar.getAvatar(),avatar.getId());
   }
 }

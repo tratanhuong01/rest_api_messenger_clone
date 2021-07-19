@@ -49,4 +49,10 @@ public class GroupMessageController {
   public int updateIconChatMessage(@RequestBody  IconChat iconChat) {
     return groupMessageService.updateIconChatMessage(iconChat.getIcon(),iconChat.getId());
   }
+
+  @CrossOrigin
+  @PutMapping("updateGroupMessage/typeGroupMessage/{typeGroupMessage}/{idGroupMessage}")
+  public int updateTypeGroupMessage(@PathVariable int typeGroupMessage,@PathVariable String idGroupMessage) {
+    return groupMessageService.updateTypeGroupMessage(typeGroupMessage,idGroupMessage);
+  }
 }
