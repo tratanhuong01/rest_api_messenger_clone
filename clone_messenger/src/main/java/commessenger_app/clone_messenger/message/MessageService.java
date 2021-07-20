@@ -6,7 +6,13 @@ import commessenger_app.clone_messenger.feel.FeelRepository;
 import commessenger_app.clone_messenger.feel.model.Feel;
 import commessenger_app.clone_messenger.message.model.Message;
 import commessenger_app.clone_messenger.message.model.MessageGroup;
+import commessenger_app.clone_messenger.statemessage.StateMessageRepository;
+import commessenger_app.clone_messenger.statemessage.model.StateMessage;
+import commessenger_app.clone_messenger.user.UserRepository;
+import commessenger_app.clone_messenger.user.model.User;
 import commessenger_app.clone_messenger.utils.StringUtil;
+import commessenger_app.clone_messenger.viewmessage.ViewMessageRepository;
+import commessenger_app.clone_messenger.viewmessage.model.ViewMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +28,15 @@ public class MessageService {
 
   @Autowired
   FeelRepository feelRepository;
+
+  @Autowired
+  UserRepository userRepository;
+
+  @Autowired
+  StateMessageRepository stateMessageRepository;
+
+  @Autowired
+  ViewMessageRepository viewMessageRepository;
 
   public List<Message> getAllMessages() {
     return messageRepository.findAll();
@@ -49,14 +64,18 @@ public class MessageService {
   public List<MessageDetail> getMessagesByGroupMessage(String id) {
     List<MessageDetail> messageDetailList = new ArrayList<>();
     List<MessageGroupUser> getList =  messageRepository.getMessagesByGroupMessage(id);
+
     for (MessageGroupUser messageGroupUser: getList) {
+      List<StateMessage> stateMessageList = stateMessageRepository.getStateMessageByIdMessage(messageGroupUser.getIdMessage());
+      List<ViewMessage> viewMessageList = viewMessageRepository.getViewMessageByIdMessage(messageGroupUser.getIdMessage());
       List<Feel> feelList = feelRepository.getAllFeels(messageGroupUser.getIdMessage());
       MessageDetail messageDetail = new MessageDetail(messageGroupUser.getIdUser(),messageGroupUser.getFirstName(),
           messageGroupUser.getLastName(),messageGroupUser.getIdGroupMessage(),messageGroupUser.getIdMessage(),
           messageGroupUser.getDateCreated(),messageGroupUser.getIconChat(),messageGroupUser.getNameGroupMessage(),
           messageGroupUser.getColorChat(),messageGroupUser.getAvatar(),messageGroupUser.getStateMessage(),
           messageGroupUser.getContent(),messageGroupUser.getNickName(),messageGroupUser.getTypeMessage(),
-          messageGroupUser.getTypeGroupMessage(),feelList);
+          messageGroupUser.getTypeGroupMessage(),feelList,messageGroupUser.getImageGroup(),
+          stateMessageList,viewMessageList);
       messageDetailList.add(messageDetail);
     }
     return  messageDetailList;
@@ -100,13 +119,16 @@ public class MessageService {
       List<MessageGroupUser> messageGroupUserList = messageRepository.getMessagesByGroupMessage(item);
       List<MessageDetail> messageDetailLists = new ArrayList<>();
       for (MessageGroupUser messageGroupUser: messageGroupUserList) {
+        List<StateMessage> stateMessageList = stateMessageRepository.getStateMessageByIdMessage(messageGroupUser.getIdMessage());
+        List<ViewMessage> viewMessageList = viewMessageRepository.getViewMessageByIdMessage(messageGroupUser.getIdMessage());
         List<Feel> feelList = feelRepository.getAllFeels(messageGroupUser.getIdMessage());
         MessageDetail messageDetail = new MessageDetail(messageGroupUser.getIdUser(),messageGroupUser.getFirstName(),
             messageGroupUser.getLastName(),messageGroupUser.getIdGroupMessage(),messageGroupUser.getIdMessage(),
             messageGroupUser.getDateCreated(),messageGroupUser.getIconChat(),messageGroupUser.getNameGroupMessage(),
             messageGroupUser.getColorChat(),messageGroupUser.getAvatar(),messageGroupUser.getStateMessage(),
             messageGroupUser.getContent(),messageGroupUser.getNickName(),messageGroupUser.getTypeMessage(),
-            messageGroupUser.getTypeGroupMessage(),feelList);
+            messageGroupUser.getTypeGroupMessage(),feelList,messageGroupUser.getImageGroup(),
+            stateMessageList,viewMessageList);
         messageDetailLists.add(messageDetail);
       }
       newListMessageGroupUsers.add(messageDetailLists);
@@ -121,13 +143,16 @@ public class MessageService {
       List<MessageGroupUser> messageGroupUserList = messageRepository.getMessagesByGroupMessage(item);
       List<MessageDetail> messageDetailLists = new ArrayList<>();
       for (MessageGroupUser messageGroupUser: messageGroupUserList) {
+        List<StateMessage> stateMessageList = stateMessageRepository.getStateMessageByIdMessage(messageGroupUser.getIdMessage());
+        List<ViewMessage> viewMessageList = viewMessageRepository.getViewMessageByIdMessage(messageGroupUser.getIdMessage());
         List<Feel> feelList = feelRepository.getAllFeels(messageGroupUser.getIdMessage());
         MessageDetail messageDetail = new MessageDetail(messageGroupUser.getIdUser(),messageGroupUser.getFirstName(),
             messageGroupUser.getLastName(),messageGroupUser.getIdGroupMessage(),messageGroupUser.getIdMessage(),
             messageGroupUser.getDateCreated(),messageGroupUser.getIconChat(),messageGroupUser.getNameGroupMessage(),
             messageGroupUser.getColorChat(),messageGroupUser.getAvatar(),messageGroupUser.getStateMessage(),
             messageGroupUser.getContent(),messageGroupUser.getNickName(),messageGroupUser.getTypeMessage(),
-            messageGroupUser.getTypeGroupMessage(),feelList);
+            messageGroupUser.getTypeGroupMessage(),feelList,messageGroupUser.getImageGroup(),
+            stateMessageList,viewMessageList);
         messageDetailLists.add(messageDetail);
       }
       newListMessageGroupUsers.add(messageDetailLists);
@@ -173,13 +198,16 @@ public class MessageService {
       List<MessageGroupUser> messageGroupUserLists = messageRepository.getListGroupMessages(item);
       List<MessageDetail> messageDetailLists = new ArrayList<>();
       for (MessageGroupUser messageGroupUser: messageGroupUserLists) {
+        List<StateMessage> stateMessageList = stateMessageRepository.getStateMessageByIdMessage(messageGroupUser.getIdMessage());
+        List<ViewMessage> viewMessageList = viewMessageRepository.getViewMessageByIdMessage(messageGroupUser.getIdMessage());
         List<Feel> feelList = feelRepository.getAllFeels(messageGroupUser.getIdMessage());
         MessageDetail messageDetail = new MessageDetail(messageGroupUser.getIdUser(),messageGroupUser.getFirstName(),
             messageGroupUser.getLastName(),messageGroupUser.getIdGroupMessage(),messageGroupUser.getIdMessage(),
             messageGroupUser.getDateCreated(),messageGroupUser.getIconChat(),messageGroupUser.getNameGroupMessage(),
             messageGroupUser.getColorChat(),messageGroupUser.getAvatar(),messageGroupUser.getStateMessage(),
             messageGroupUser.getContent(),messageGroupUser.getNickName(),messageGroupUser.getTypeMessage(),
-            messageGroupUser.getTypeGroupMessage(),feelList);
+            messageGroupUser.getTypeGroupMessage(),feelList,messageGroupUser.getImageGroup(),
+            stateMessageList,viewMessageList);
         messageDetailLists.add(messageDetail);
       }
       messageGroupUserList.add(messageDetailLists);
@@ -214,6 +242,15 @@ public class MessageService {
 
   public int deleteMemberOutGroup(String idGroupMessage,String idUser) {
     return messageRepository.deleteMemberOutGroup(idGroupMessage, idUser);
+  }
+
+  public List<Optional<User>> listMemberGroupChat(String idGroupMessage) {
+    List<Optional<User>> userList = new ArrayList<>();
+    List<String> stringList = messageRepository.listMemberGroupChat(idGroupMessage);
+    for (String string: stringList ) {
+      userList.add(userRepository.findById(string));
+    }
+    return userList;
   }
 
 }

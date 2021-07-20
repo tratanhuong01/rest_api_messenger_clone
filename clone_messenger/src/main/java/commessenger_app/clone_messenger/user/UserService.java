@@ -1,6 +1,5 @@
 package commessenger_app.clone_messenger.user;
 
-import commessenger_app.clone_messenger.DTO.Avatar;
 import commessenger_app.clone_messenger.DTO.RelationUser;
 import commessenger_app.clone_messenger.relationshipuser.model.RelationshipUser;
 import commessenger_app.clone_messenger.user.model.FormLogin;

@@ -1,9 +1,6 @@
 package commessenger_app.clone_messenger.fileUpload;
 
-import commessenger_app.clone_messenger.DTO.Avatar;
-import commessenger_app.clone_messenger.fileUpload.model.UpdateAvatar;
-import commessenger_app.clone_messenger.user.UserService;
-import org.hibernate.sql.Update;
+import commessenger_app.clone_messenger.fileUpload.model.UpdateImageSingle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +16,15 @@ public class CloudinaryController {
   CloudinaryService cloudinaryService;
 
   @CrossOrigin
-  @PostMapping("updateAvatar")
-  public ResponseEntity<Map> updateAvatar(@RequestParam MultipartFile multipartFile,@RequestParam String idUser) throws IOException {
-    UpdateAvatar updateAvatar = new UpdateAvatar();
-    updateAvatar.setMultipartFile(multipartFile);
-    updateAvatar.setIdUser(idUser);
-    Map result = cloudinaryService.upload(updateAvatar);
+  @PostMapping("updateImageSingle")
+  public ResponseEntity<Map> updateImageSingle(@RequestParam String id,@RequestParam MultipartFile multipartFile,
+                                               @RequestParam String publicId) throws IOException {
+    UpdateImageSingle updateImageSingle = new UpdateImageSingle();
+    updateImageSingle.setMultipartFile(multipartFile);
+    updateImageSingle.setId(id);
+    updateImageSingle.setPublicId(publicId);
+    Map result = cloudinaryService.upload(updateImageSingle);
     return new ResponseEntity(result, HttpStatus.OK);
   }
+
 }

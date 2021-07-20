@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
-@Table(name = "groupmessage")
+@Table(name = "groupMessage")
 public class GroupMessage {
 
   @Id
@@ -29,7 +29,18 @@ public class GroupMessage {
   private int typeGroupMessage;
 
   @Column
+  private String imageGroup;
+
+  @Column
   private Timestamp dateCreated;
+
+  public String getImageGroup() {
+    return imageGroup;
+  }
+
+  public void setImageGroup(String imageGroup) {
+    this.imageGroup = imageGroup;
+  }
 
   public String getId() {
     return id;

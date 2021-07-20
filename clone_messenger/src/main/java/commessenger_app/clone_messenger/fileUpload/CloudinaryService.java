@@ -2,7 +2,7 @@ package commessenger_app.clone_messenger.fileUpload;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import commessenger_app.clone_messenger.fileUpload.model.UpdateAvatar;
+import commessenger_app.clone_messenger.fileUpload.model.UpdateImageSingle;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,10 +26,10 @@ public class CloudinaryService {
     cloudinary = new Cloudinary(valuesMap);
   }
 
-  public Map upload(UpdateAvatar updateAvatar) throws IOException {
-    File file = convert(updateAvatar.getMultipartFile());
+  public Map upload(UpdateImageSingle updateImageSingle) throws IOException {
+    File file = convert(updateImageSingle.getMultipartFile());
     Map result = cloudinary.uploader().upload(file, ObjectUtils.asMap(
-        "public_id", "Messenger/AvatarUpdate/"+ updateAvatar.getIdUser(),
+        "public_id", updateImageSingle.getPublicId() + updateImageSingle.getId(),
         "overwrite", true,
         "resource_type", "image"
     ));

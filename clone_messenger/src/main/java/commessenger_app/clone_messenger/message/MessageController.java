@@ -4,6 +4,7 @@ import commessenger_app.clone_messenger.DTO.MessageDetail;
 import commessenger_app.clone_messenger.DTO.MessageGroupUser;
 import commessenger_app.clone_messenger.DTO.Nickname;
 import commessenger_app.clone_messenger.message.model.Message;
+import commessenger_app.clone_messenger.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -96,4 +97,9 @@ public class MessageController {
     return messageService.deleteMemberOutGroup(idGroupMessage,idUser);
   }
 
+  @CrossOrigin
+  @GetMapping("getMemberGroupChat/{idGroupMessage}")
+  public List<Optional<User>> listMemberGroupChat(@PathVariable String idGroupMessage) {
+    return messageService.listMemberGroupChat(idGroupMessage);
+  }
 }

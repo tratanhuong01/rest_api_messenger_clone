@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.groupmessage;
 
+import commessenger_app.clone_messenger.DTO.ImageSingle;
 import commessenger_app.clone_messenger.groupmessage.model.GroupMessage;
 import commessenger_app.clone_messenger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class GroupMessageService {
 
   public GroupMessage addGroupMessage(GroupMessage groupMessage) {
     GroupMessage groupMessage1 = groupMessageRepository.getIdBestNew();
-    groupMessage.setId(StringUtil.gereralID("groupmessage", groupMessage1 == null ? null : groupMessage1.getId()));
+    groupMessage.setId(StringUtil.gereralID("groupMessage", groupMessage1 == null ? null : groupMessage1.getId()));
     groupMessage.setDateCreated(new Timestamp(new Date().getTime()));
     return groupMessageRepository.save(groupMessage);
   }
@@ -45,6 +46,10 @@ public class GroupMessageService {
 
   public int updateTypeGroupMessage(int typeGroupMessage,String idGroupMessage){
     return groupMessageRepository.updateTypeGroupMessage(typeGroupMessage, idGroupMessage);
+  }
+
+  public int updateImageGroupMessage(ImageSingle imageSingle) {
+    return groupMessageRepository.updateImageGroupMessage(imageSingle.getAvatar(),imageSingle.getId());
   }
 
 }

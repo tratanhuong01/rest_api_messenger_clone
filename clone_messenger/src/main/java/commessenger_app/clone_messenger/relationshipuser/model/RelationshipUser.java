@@ -5,7 +5,7 @@ import commessenger_app.clone_messenger.user.model.User;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "relationshipuser")
+@Table(name = "relationshipUser")
 public class RelationshipUser {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class RelationshipUser {
   private User userRelationshipUser;
 
   @Column
-  private String idRecivice;
+  private String idReceive;
 
   @Column
   private int status;
@@ -45,12 +45,12 @@ public class RelationshipUser {
     this.id = id;
   }
 
-  public String getIdRecivice() {
-    return idRecivice;
+  public String getIdReceive() {
+    return idReceive;
   }
 
-  public void setIdRecivice(String idRecivice) {
-    this.idRecivice = idRecivice;
+  public void setIdReceive(String idReceive) {
+    this.idReceive = idReceive;
   }
 
   public int getStatus() {

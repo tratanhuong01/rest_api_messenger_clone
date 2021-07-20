@@ -9,26 +9,26 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface RelationshipUserRepository extends JpaRepository<RelationshipUser, Long> {
-  @Query(value = "SELECT * FROM relationshipuser WHERE id_send = ?1 AND id_recivice = ?2 ", nativeQuery = true)
+  @Query(value = "SELECT * FROM relationship_user WHERE id_send = ?1 AND id_receive = ?2 ", nativeQuery = true)
   RelationshipUser checkStatusBetweenTwoUser(String idUserMain, String idUserView);
 
-  @Query(value = "SELECT * FROM relationshipuser WHERE id_recivice = ?1 AND status = ?2 ", nativeQuery = true)
-  List<RelationshipUser> getInviteRequest(String idRevice, String status);
+  @Query(value = "SELECT * FROM relationship_user WHERE id_receive = ?1 AND status = ?2 ", nativeQuery = true)
+  List<RelationshipUser> getInviteRequest(String idReceive, String status);
 
   @Modifying
   @Transactional
-  @Query(value = "UPDATE relationshipuser SET status = ?1 WHERE id_send = ?2 AND id_recivice = ?3 ", nativeQuery = true)
-  int updateStatusRelationShip(int status, String id_send, String id_recivice);
+  @Query(value = "UPDATE relationship_user SET status = ?1 WHERE id_send = ?2 AND id_receive = ?3 ", nativeQuery = true)
+  int updateStatusRelationShip(int status, String id_send, String id_receive);
 
   @Modifying
   @Transactional
-  @Query(value = "DELETE FROM relationshipuser WHERE id_send = ?1 AND id_recivice = ?2 ", nativeQuery = true)
-  int deleteRelationShip(String id_send, String id_recivice);
+  @Query(value = "DELETE FROM relationship_user WHERE id_send = ?1 AND id_receive = ?2 ", nativeQuery = true)
+  int deleteRelationShip(String id_send, String id_receive);
 
-  @Query(value = "SELECT * FROM relationshipuser WHERE id_recivice = ?1 AND ( status = ?2 OR status = ?3  OR " +
+  @Query(value = "SELECT * FROM relationship_user WHERE id_receive= ?1 AND ( status = ?2 OR status = ?3  OR " +
       " status = ?4 ) ", nativeQuery = true)
-  List<RelationshipUser> getFriendProposal(String idRecivice, int statusOne, int statusTwo, int statusThree);
+  List<RelationshipUser> getFriendProposal(String idReceive, int statusOne, int statusTwo, int statusThree);
 
-  @Query(value = "SELECT * FROM relationshipuser WHERE id_recivice = ?1 AND status = 3 ", nativeQuery = true)
-  List<RelationshipUser> getFriendById(String idRevice);
+  @Query(value = "SELECT * FROM relationship_user WHERE id_receive = ?1 AND status = 3 ", nativeQuery = true)
+  List<RelationshipUser> getFriendById(String idReceive);
 }

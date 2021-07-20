@@ -2,6 +2,8 @@ package commessenger_app.clone_messenger.DTO;
 
 
 import commessenger_app.clone_messenger.feel.model.Feel;
+import commessenger_app.clone_messenger.statemessage.model.StateMessage;
+import commessenger_app.clone_messenger.viewmessage.model.ViewMessage;
 
 import java.util.List;
 
@@ -39,7 +41,16 @@ public class MessageDetail {
 
   private List<Feel> feelList;
 
-  public MessageDetail(String idUser, String firstName, String lastName, String idGroupMessage, String idMessage, String dateCreated, String iconChat, String nameGroupMessage, String colorChat, String avatar, String stateMessage, String content, String nickName, String typeMessage, String typeGroupMessage, List<Feel> feelList) {
+  private String imageGroup;
+
+  private List<StateMessage> stateMessageList;
+
+  private List<ViewMessage> viewMessageList;
+
+  public MessageDetail(String idUser, String firstName, String lastName, String idGroupMessage, String idMessage,
+  String dateCreated, String iconChat, String nameGroupMessage, String colorChat, String avatar, String stateMessage,
+  String content, String nickName, String typeMessage, String typeGroupMessage, List<Feel> feelList, String imageGroup,
+  List<StateMessage> stateMessageList, List<ViewMessage> viewMessageList) {
     this.idUser = idUser;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -56,6 +67,9 @@ public class MessageDetail {
     this.typeMessage = typeMessage;
     this.typeGroupMessage = typeGroupMessage;
     this.feelList = feelList;
+    this.imageGroup = imageGroup;
+    this.stateMessageList = stateMessageList;
+    this.viewMessageList = viewMessageList;
   }
 
   public String getIdUser() {
@@ -184,5 +198,29 @@ public class MessageDetail {
 
   public void setFeelList(List<Feel> feelList) {
     this.feelList = feelList;
+  }
+
+  public String getImageGroup() {
+    return imageGroup;
+  }
+
+  public void setImageGroup(String imageGroup) {
+    this.imageGroup = imageGroup;
+  }
+
+  public List<StateMessage> getStateMessageList() {
+    return stateMessageList;
+  }
+
+  public void setStateMessageList(List<StateMessage> stateMessageList) {
+    this.stateMessageList = stateMessageList;
+  }
+
+  public List<ViewMessage> getViewMessageList() {
+    return viewMessageList;
+  }
+
+  public void setViewMessageList(List<ViewMessage> viewMessageList) {
+    this.viewMessageList = viewMessageList;
   }
 }

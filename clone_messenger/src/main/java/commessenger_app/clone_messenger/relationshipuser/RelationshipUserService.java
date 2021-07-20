@@ -29,16 +29,16 @@ public class RelationshipUserService {
     return relationshipUser == null ? null : relationshipUser;
   }
 
-  public List<RelationshipUser> getInviteRequest(String idRecivice, String status) {
-    return relationshipUserRepository.getInviteRequest(idRecivice, status);
+  public List<RelationshipUser> getInviteRequest(String idReceive, String status) {
+    return relationshipUserRepository.getInviteRequest(idReceive, status);
   }
 
-  public int updateStatusRelationShip(int status, String id_send, String id_recivice) {
-    return relationshipUserRepository.updateStatusRelationShip(status, id_send, id_recivice);
+  public int updateStatusRelationShip(int status, String id_send, String id_receive) {
+    return relationshipUserRepository.updateStatusRelationShip(status, id_send, id_receive);
   }
 
-  public int deleteRelationShip(String id_send, String id_recivice) {
-    return relationshipUserRepository.deleteRelationShip(id_send, id_recivice);
+  public int deleteRelationShip(String id_send, String id_receive) {
+    return relationshipUserRepository.deleteRelationShip(id_send, id_receive);
   }
 
   public List<RelationshipUser> getFriendProposal(String idSend, int statusOne, int statusTwo, int statusThree) {

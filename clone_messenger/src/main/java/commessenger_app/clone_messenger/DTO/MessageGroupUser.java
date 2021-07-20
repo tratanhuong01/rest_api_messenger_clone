@@ -13,20 +13,21 @@ import java.util.List;
     classes = @ConstructorResult(
         targetClass = MessageGroupUser.class,
         columns = {
-            @ColumnResult(name = "id_user", type = String.class),
-            @ColumnResult(name = "first_name", type = String.class),
-            @ColumnResult(name = "last_name", type = String.class),
-            @ColumnResult(name = "id_group_message", type = String.class),
-            @ColumnResult(name = "id_message", type = String.class),
-            @ColumnResult(name = "date_created", type = String.class),
-            @ColumnResult(name = "icon_chat", type = String.class),
-            @ColumnResult(name = "name_group_message", type = String.class),
-            @ColumnResult(name = "color_chat", type = String.class),
+            @ColumnResult(name = "idUser", type = String.class),
+            @ColumnResult(name = "firstName", type = String.class),
+            @ColumnResult(name = "lastName", type = String.class),
+            @ColumnResult(name = "idGroupMessage", type = String.class),
+            @ColumnResult(name = "idMessage", type = String.class),
+            @ColumnResult(name = "dateCreated", type = String.class),
+            @ColumnResult(name = "iconChat", type = String.class),
+            @ColumnResult(name = "nameGroupMessage", type = String.class),
+            @ColumnResult(name = "colorChat", type = String.class),
             @ColumnResult(name = "avatar"),
             @ColumnResult(name = "stateMessage"),
             @ColumnResult(name = "content"),
             @ColumnResult(name = "nickName"),
             @ColumnResult(name = "typeMessage"),
+            @ColumnResult(name = "imageGroup"),
         }
     )
 )
@@ -70,4 +71,5 @@ public interface MessageGroupUser {
 
   String getTypeGroupMessage();
 
+  String getImageGroup();
 }

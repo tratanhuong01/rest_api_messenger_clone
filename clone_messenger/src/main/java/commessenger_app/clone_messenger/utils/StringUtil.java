@@ -21,13 +21,12 @@ public class StringUtil {
         if (id == null) {
           idNew = "300000000";
         } else {
-          System.out.println(" Id recivice : " + id);
           int idNewInt = Integer.parseInt(id);
           idNewInt++;
           idNew = String.valueOf(idNewInt);
         }
         return idNew;
-      case "groupmessage":
+      case "groupMessage":
         if (id == null) {
           idNew = "2000000000";
         } else {

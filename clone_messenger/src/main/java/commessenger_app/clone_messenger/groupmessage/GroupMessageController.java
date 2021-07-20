@@ -1,6 +1,7 @@
 package commessenger_app.clone_messenger.groupmessage;
 
 import commessenger_app.clone_messenger.DTO.IconChat;
+import commessenger_app.clone_messenger.DTO.ImageSingle;
 import commessenger_app.clone_messenger.groupmessage.model.GroupMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,13 @@ public class GroupMessageController {
   GroupMessageService groupMessageService;
 
   @Autowired
-  @GetMapping("groupmessage")
+  @GetMapping("groupMessage")
   public List<GroupMessage> getGroupMessages() {
     return groupMessageService.getGroupMessages();
   }
 
   @CrossOrigin
-  @PostMapping("groupmessage")
+  @PostMapping("groupMessage")
   public GroupMessage addGroupMessage(@RequestBody GroupMessage groupMessage) {
     return groupMessageService.addGroupMessage(groupMessage);
   }
@@ -39,7 +40,7 @@ public class GroupMessageController {
   }
 
   @CrossOrigin
-  @GetMapping("groupmessage/{id}")
+  @GetMapping("groupMessage/{id}")
   public Optional<GroupMessage> getGroupMessageById(@PathVariable String id) {
     return groupMessageService.getGroupMessageById(id);
   }
@@ -55,4 +56,11 @@ public class GroupMessageController {
   public int updateTypeGroupMessage(@PathVariable int typeGroupMessage,@PathVariable String idGroupMessage) {
     return groupMessageService.updateTypeGroupMessage(typeGroupMessage,idGroupMessage);
   }
+
+  @CrossOrigin
+  @PutMapping("updateGroupMessage/imageGroup")
+  public int updateImageGroupMessage(@RequestBody ImageSingle imageSingle) {
+    return groupMessageService.updateImageGroupMessage(imageSingle);
+  }
+
 }

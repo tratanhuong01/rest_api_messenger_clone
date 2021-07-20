@@ -1,6 +1,6 @@
 package commessenger_app.clone_messenger.user;
 
-import commessenger_app.clone_messenger.DTO.Avatar;
+import commessenger_app.clone_messenger.DTO.ImageSingle;
 import commessenger_app.clone_messenger.DTO.RelationUser;
 import commessenger_app.clone_messenger.user.model.FormLogin;
 import commessenger_app.clone_messenger.user.model.FormRegister;
@@ -79,7 +79,7 @@ public class UserController {
 
   @CrossOrigin
   @PutMapping("updateAvatar")
-  public int updateAvatar(@RequestBody Avatar avatar) {
-    return userService.updateAvatar(avatar.getAvatar(),avatar.getId());
+  public int updateAvatar(@RequestBody ImageSingle imageSingle) {
+    return userService.updateAvatar(imageSingle.getAvatar(), imageSingle.getId());
   }
 }

@@ -1,6 +1,6 @@
 package commessenger_app.clone_messenger.DTO;
 
-public class Avatar {
+public class ImageSingle {
   String id;
   String avatar;
 

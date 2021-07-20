@@ -11,13 +11,13 @@ public class RelationshipUserController {
   @Autowired
   private RelationshipUserService relationshipUserService;
 
-  @GetMapping("relationshipuser")
+  @GetMapping("relationshipUser")
   public List<RelationshipUser> getRelationshipUser() {
     return relationshipUserService.getRelationshipUser();
   }
 
   @CrossOrigin
-  @PostMapping("relationshipuser")
+  @PostMapping("relationshipUser")
   public RelationshipUser addRelationshipUser(@RequestBody RelationshipUser relationshipUser) {
     return relationshipUserService.addRelationshipUser((relationshipUser));
   }
@@ -29,21 +29,21 @@ public class RelationshipUserController {
   }
 
   @CrossOrigin
-  @GetMapping("getInviteRequest/{idRecivice}/{status}")
-  public List<RelationshipUser> getInviteRequest(@PathVariable String idRecivice, @PathVariable String status) {
-    return relationshipUserService.getInviteRequest(idRecivice, status);
+  @GetMapping("getInviteRequest/{idReceive}/{status}")
+  public List<RelationshipUser> getInviteRequest(@PathVariable String idReceive, @PathVariable String status) {
+    return relationshipUserService.getInviteRequest(idReceive, status);
   }
 
   @CrossOrigin
-  @GetMapping("updateStatusRelationShip/{idSend}/{idRecivice}")
-  public int updateStatusRelationShip(@PathVariable String idSend, @PathVariable String idRecivice) {
-    return relationshipUserService.updateStatusRelationShip(3, idSend, idRecivice);
+  @GetMapping("updateStatusRelationShip/{idSend}/{idReceive}")
+  public int updateStatusRelationShip(@PathVariable String idSend, @PathVariable String idReceive) {
+    return relationshipUserService.updateStatusRelationShip(3, idSend, idReceive);
   }
 
   @CrossOrigin
-  @GetMapping("relationshipuser/{idSend}/{idRecivice}")
-  public int deleteRelationShip(@PathVariable String idSend, @PathVariable String idRecivice) {
-    return relationshipUserService.deleteRelationShip(idSend, idRecivice);
+  @GetMapping("relationshipUser/{idSend}/{idReceive}")
+  public int deleteRelationShip(@PathVariable String idSend, @PathVariable String idReceive) {
+    return relationshipUserService.deleteRelationShip(idSend, idReceive);
   }
 
   @CrossOrigin
@@ -53,7 +53,7 @@ public class RelationshipUserController {
   }
 
   @CrossOrigin
-  @GetMapping("relationshipuser/{id}")
+  @GetMapping("relationshipUser/{id}")
   public List<RelationshipUser> getFriendById(@PathVariable String id) {
     return relationshipUserService.getFriendById(id);
   }
