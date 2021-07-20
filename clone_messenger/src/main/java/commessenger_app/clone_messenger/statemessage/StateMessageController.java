@@ -21,9 +21,9 @@ public class StateMessageController {
   }
 
   @CrossOrigin
-  @GetMapping("stateMessage/{id{")
-  public List<StateMessage> getStateMessageByIdMessage(@PathVariable String idMessage) {
-    return stateMessageService.getStateMessageByIdMessage(idMessage);
+  @GetMapping("stateMessage/{id}")
+  public List<StateMessage> getStateMessageByIdMessage(@PathVariable String id) {
+    return stateMessageService.getStateMessageByIdMessage(id);
   }
 
   @CrossOrigin

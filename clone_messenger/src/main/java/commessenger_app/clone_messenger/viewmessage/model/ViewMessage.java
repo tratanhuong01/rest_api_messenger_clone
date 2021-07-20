@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.viewmessage.model;
 
+import commessenger_app.clone_messenger.groupmessage.model.GroupMessage;
 import commessenger_app.clone_messenger.message.model.Message;
 import commessenger_app.clone_messenger.user.model.User;
 
@@ -20,6 +21,10 @@ public class ViewMessage {
   @ManyToOne
   @JoinColumn(name = "idUser")
   private User userViewMessage;
+
+  @ManyToOne
+  @JoinColumn(name = "idGroupMessage")
+  private GroupMessage groupMessageViewMessage;
 
   @Column
   private int view;
@@ -46,6 +51,14 @@ public class ViewMessage {
 
   public void setUserViewMessage(User userViewMessage) {
     this.userViewMessage = userViewMessage;
+  }
+
+  public GroupMessage getGroupMessageViewMessage() {
+    return groupMessageViewMessage;
+  }
+
+  public void setGroupMessageViewMessage(GroupMessage groupMessageViewMessage) {
+    this.groupMessageViewMessage = groupMessageViewMessage;
   }
 
   public int getView() {

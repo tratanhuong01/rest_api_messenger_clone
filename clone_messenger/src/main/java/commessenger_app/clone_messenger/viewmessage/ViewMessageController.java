@@ -36,4 +36,16 @@ public class ViewMessageController {
     return viewMessageService.getViewMessageByIdMessage(idMessage);
   }
 
+  @CrossOrigin
+  @PutMapping("updateViewMessage/{idGroupMessage}/{idUser}")
+  public int updateViewMessageHandle(@PathVariable String idGroupMessage,@PathVariable String idUser) {
+    return viewMessageService.updateViewMessageHandle(idGroupMessage, idUser);
+  }
+
+  @CrossOrigin
+  @PutMapping("checkViewMessage/{idGroupMessage}/{idUser}")
+  public List<ViewMessage> checkViewMessageHandle(@PathVariable String idGroupMessage,@PathVariable String idUser) {
+    return viewMessageService.checkViewMessageHandle(idGroupMessage, idUser);
+  }
+
 }

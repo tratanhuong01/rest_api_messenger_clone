@@ -1,5 +1,6 @@
 package commessenger_app.clone_messenger.statemessage.model;
 
+import commessenger_app.clone_messenger.groupmessage.model.GroupMessage;
 import commessenger_app.clone_messenger.message.model.Message;
 import commessenger_app.clone_messenger.user.model.User;
 
@@ -15,11 +16,15 @@ public class StateMessage {
 
   @ManyToOne
   @JoinColumn(name = "id_message")
-  private Message stateMessageData;
+  private Message stateMessage;
 
   @ManyToOne
   @JoinColumn(name = "id_user")
   private User userStateMessage;
+
+  @ManyToOne
+  @JoinColumn(name = "idGroupMessage")
+  private GroupMessage groupMessageStateMessage;
 
   @Column
   private int state;
@@ -33,11 +38,11 @@ public class StateMessage {
   }
 
   public Message getStateMessage() {
-    return stateMessageData;
+    return stateMessage;
   }
 
-  public void setStateMessage(Message stateMessageData) {
-    this.stateMessageData = stateMessageData;
+  public void setStateMessage(Message stateMessage) {
+    this.stateMessage = stateMessage;
   }
 
   public User getUserStateMessage() {
@@ -46,6 +51,14 @@ public class StateMessage {
 
   public void setUserStateMessage(User userStateMessage) {
     this.userStateMessage = userStateMessage;
+  }
+
+  public GroupMessage getGroupMessageStateMessage() {
+    return groupMessageStateMessage;
+  }
+
+  public void setGroupMessageStateMessage(GroupMessage groupMessageStateMessage) {
+    this.groupMessageStateMessage = groupMessageStateMessage;
   }
 
   public int getState() {
