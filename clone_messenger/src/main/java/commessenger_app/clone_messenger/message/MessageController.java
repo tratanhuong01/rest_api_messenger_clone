@@ -102,4 +102,11 @@ public class MessageController {
   public List<Optional<User>> listMemberGroupChat(@PathVariable String idGroupMessage) {
     return messageService.listMemberGroupChat(idGroupMessage);
   }
+
+  @CrossOrigin
+  @GetMapping("getMemberGroupChat/{idGroupMessage}/{idUser}")
+  public List<Optional<User>> listMemberGroupChatSpliceIdUser(@PathVariable String idGroupMessage,@PathVariable String idUser) {
+    return messageService.listMemberGroupChatSpliceIdUser(idGroupMessage,idUser);
+  }
+
 }

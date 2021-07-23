@@ -253,4 +253,13 @@ public class MessageService {
     return userList;
   }
 
+  public List<Optional<User>> listMemberGroupChatSpliceIdUser(String idGroupMessage,String idUser) {
+    List<Optional<User>> userList = new ArrayList<>();
+    List<String> stringList = messageRepository.listMemberGroupChatSpliceIdUser(idGroupMessage,idUser);
+    for (String string: stringList ) {
+      userList.add(userRepository.findById(string));
+    }
+    return userList;
+  }
+
 }

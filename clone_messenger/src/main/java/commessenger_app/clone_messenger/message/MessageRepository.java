@@ -75,4 +75,7 @@ public interface MessageRepository extends JpaRepository<Message, String> {
   @Query(value = "SELECT DISTINCT id_user FROM messages WHERE id_group_message = ?1 ",nativeQuery = true)
   List<String> listMemberGroupChat(String idGroupMessage);
 
+  @Query(value = "SELECT DISTINCT id_user FROM messages WHERE id_group_message = ?1 AND id_user != ?2 ",nativeQuery = true)
+  List<String> listMemberGroupChatSpliceIdUser(String idGroupMessage,String idUser);
+
 }
