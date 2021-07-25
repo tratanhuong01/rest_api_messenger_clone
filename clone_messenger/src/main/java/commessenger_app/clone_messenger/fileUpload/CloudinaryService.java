@@ -9,7 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -26,7 +29,7 @@ public class CloudinaryService {
     cloudinary = new Cloudinary(valuesMap);
   }
 
-  public Map upload(UpdateImageSingle updateImageSingle) throws IOException {
+  public Map uploadSingle(UpdateImageSingle updateImageSingle) throws IOException {
     File file = convert(updateImageSingle.getMultipartFile());
     Map result = cloudinary.uploader().upload(file, ObjectUtils.asMap(
         "public_id", updateImageSingle.getPublicId() + updateImageSingle.getId(),
@@ -35,6 +38,30 @@ public class CloudinaryService {
     ));
     file.delete();
     return result;
+  }
+
+  public Map uploadSingleChild(UpdateImageSingle updateImageSingle) throws IOException {
+    File file = convert(updateImageSingle.getMultipartFile());
+    Map result = cloudinary.uploader().upload(file, ObjectUtils.asMap(
+        "public_id", updateImageSingle.getPublicId() + updateImageSingle.getId() + "_" +
+            new Timestamp(System.currentTimeMillis()).getTime(),
+        "overwrite", true,
+        "resource_type", "image"
+    ));
+    file.delete();
+    return result;
+  }
+
+  public Map uploadMulti(UpdateImageSingle updateImageSingle) throws IOException {
+      File file = convert(updateImageSingle.getMultipartFile());
+      Map result = cloudinary.uploader().upload(file, ObjectUtils.asMap(
+          "public_id", updateImageSingle.getPublicId() + updateImageSingle.getId() + "_" +
+              new Timestamp(System.currentTimeMillis()).getTime(),
+          "overwrite", true,
+          "resource_type", "image"
+      ));
+      file.delete();
+      return result;
   }
 
   public Map delete(String id) throws IOException {

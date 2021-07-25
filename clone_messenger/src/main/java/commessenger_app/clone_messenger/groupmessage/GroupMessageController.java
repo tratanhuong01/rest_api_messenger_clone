@@ -27,13 +27,13 @@ public class GroupMessageController {
     return groupMessageService.addGroupMessage(groupMessage);
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin
   @GetMapping("updateGroupMessage/colorChat/{id}/{name}")
   public int updateColorChatGroupMessage(@PathVariable String id, @PathVariable String name) {
     return groupMessageService.updateColorChatGroupMessage(name, id);
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin
   @GetMapping("updateGroupMessage/nameGroupMessage/{id}/{name}")
   public int updateNameGroupMessage(@PathVariable String id, @PathVariable String name) {
     return groupMessageService.updateNameGroupMessage(id, name);
