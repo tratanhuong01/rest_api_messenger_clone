@@ -262,4 +262,8 @@ public class MessageService {
     return userList;
   }
 
+  public int updateAdminGroup(String idUser,String idMessage) {
+    return messageRepository.updateAdminGroup(idUser, idMessage);
+  }
+
 }

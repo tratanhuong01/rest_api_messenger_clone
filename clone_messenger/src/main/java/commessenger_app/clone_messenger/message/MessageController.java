@@ -109,4 +109,10 @@ public class MessageController {
     return messageService.listMemberGroupChatSpliceIdUser(idGroupMessage,idUser);
   }
 
+  @CrossOrigin
+  @PutMapping("updateAdminGroup/{idUser}/{idMessage}")
+  public int updateAdminGroup(@PathVariable String idUser,@PathVariable String idMessage) {
+    return messageService.updateAdminGroup(idUser,idMessage);
+  }
+
 }
